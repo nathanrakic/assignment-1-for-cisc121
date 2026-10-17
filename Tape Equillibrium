@@ -1,0 +1,41 @@
+FUNCTION solution(A)
+    SET total_sum to sum of all elements in array A
+    SET left_sum to 0
+    SET min_diff to infinity
+    
+    FOR P FROM 1 TO length of A - 1
+        SET left_sum to left_sum + A[P - 1]
+        SET right_sum to total_sum - left_sum
+        
+        SET current_diff to absolute_value(left_sum - right_sum)
+        
+        IF current_diff < min_diff
+            SET min_diff to current_diff
+            
+    RETURN min_diff
+
+
+
+
+def solution(A):
+    # Pre-calculate the total sum of the array first
+    # Calling sum() inside the loop would make it O(N^2) and fail the efficiency tests
+    total_sum = sum(A)
+    left_sum = 0
+    min_diff = float('inf')
+    
+    # Iterate through possible split points (1 to N-1)
+    for p in range(1, len(A)):
+        # Dynamically update the left side sum
+        left_sum += A[p - 1]
+        
+        # The right side is just the total minus what we've accumulated on the left
+        right_sum = total_sum - left_sum
+        
+        diff = abs(left_sum - right_sum)
+        
+        # Keep track of the absolute minimum difference found so far
+        if diff < min_diff:
+            min_diff = diff
+            
+    return min_diff
