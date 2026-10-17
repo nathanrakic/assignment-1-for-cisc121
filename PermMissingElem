@@ -1,0 +1,28 @@
+FUNCTION solution(A)
+    SET N to length of array A
+    SET max_expected_number to N + 1
+    
+    SET expected_sum to max_expected_number * (max_expected_number + 1) / 2
+    
+    SET actual_sum to 0
+    FOR EACH number IN array A
+        SET actual_sum to actual_sum + number
+        
+    RETURN expected_sum - actual_sum
+
+
+
+
+
+def solution(A):
+    n = len(A)
+    
+    # Use Gauss's formula to find the sum of all numbers from 1 to N+1
+    # This represents what the array sum would be if nothing was missing
+    expected_sum = (n + 1) * (n + 2) // 2
+    
+    # Get the actual sum of the elements in the array
+    actual_sum = sum(A)
+    
+    # The difference between the theoretical sum and actual sum is our missing number
+    return expected_sum - actual_sum
