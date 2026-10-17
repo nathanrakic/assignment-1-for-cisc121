@@ -1,0 +1,31 @@
+FUNCTION solution(X, Y, D)
+    SET distance to Y - X
+    
+    IF distance == 0
+        RETURN 0
+        
+    SET jumps to distance integer_divided_by D
+    
+    IF distance modulo D > 0
+        SET jumps to jumps + 1
+        
+    RETURN jumps
+
+
+
+def solution(X, Y, D):
+    distance = Y - X
+    
+    # If the frog is already at or past the target, no jumps needed
+    if distance == 0:
+        return 0
+        
+    # Use floor division to find the base number of jumps
+    # We use math here instead of a while loop to achieve O(1) time complexity and avoid TLE
+    jumps = distance // D
+    
+    # If there's a remainder, the frog needs one final jump to cross the threshold
+    if distance % D != 0:
+        jumps += 1
+        
+    return jumps
