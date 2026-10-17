@@ -1,0 +1,35 @@
+FUNCTION solution(A, K)
+    IF A is empty
+        RETURN A
+    
+    SET N to length of array A
+    SET shift to K modulo N
+    
+    IF shift == 0
+        RETURN A
+        
+    SET result to new empty array
+    
+    SET result to slice of A from (N - shift) to end
+    
+    append slice of A from start to (N - shift) to result
+    
+    RETURN result
+
+
+
+    def solution(A, K):
+    # Handle the edge case where the array is empty so we don't get an index error
+    if len(A) == 0:
+        return A
+        
+    N = len(A)
+    # If K is larger than the array length, we only need the remainder
+    K = K % N  
+    
+    # If the shift is a multiple of the array length, the array looks the same
+    if K == 0:
+        return A
+        
+    # Use list slicing to move the back elements to the front in O(N) time
+    return A[-K:] + A[:-K]
