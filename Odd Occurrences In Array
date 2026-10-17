@@ -1,0 +1,21 @@
+FUNCTION solution(A)
+    SET unpaired_element to 0
+    
+    FOR EACH number IN array A
+        SET unpaired_element to unpaired_element BITWISE_XOR number
+        
+    RETURN unpaired_element
+
+
+
+def solution(A):
+    unpaired = 0
+    
+    # Iterate through the array and XOR every number
+    # XORing a number with itself results in 0, so all pairs cancel each other out
+    for num in A:
+        unpaired ^= num
+        
+    # We are left with the only number that didn't have a pair
+    # This gives us O(N) time complexity and O(1) space, which beats using a dictionary
+    return unpaired
